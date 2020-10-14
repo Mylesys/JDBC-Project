@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.io.*;
 import java.sql.*;
+import java.util.Properties;
 
 public class Formulaire extends JFrame implements ActionListener {
 
