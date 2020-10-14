@@ -18,6 +18,7 @@ public class Formulaire extends JFrame implements ActionListener {
     JTextField userTextField = new JTextField();
     JPasswordField passwordField = new JPasswordField();
     JButton loginButton = new JButton("Se connecter");
+    JButton exitButton = new JButton("Quitter");
 
 
 //Initialisation paramètres de connexion
@@ -55,7 +56,7 @@ public class Formulaire extends JFrame implements ActionListener {
         userTextField.setBounds(400, 150, 150, 30);
         passwordField.setBounds(400, 220, 150, 30);
         loginButton.setBounds(400, 300, 150, 30);
-
+        exitButton.setBounds(400, 350, 150, 30);
 
 
     }
@@ -67,13 +68,17 @@ public class Formulaire extends JFrame implements ActionListener {
         container.add(userTextField);
         container.add(passwordField);
         container.add(loginButton);
+        container.add(exitButton);
 
     }
 
     public void addActionEvent() {
         loginButton.addActionListener(this);
+        exitButton.addActionListener(this);
 
     }
+
+
 
 
     @Override
@@ -83,6 +88,24 @@ public class Formulaire extends JFrame implements ActionListener {
             String pwdText;
             userText = userTextField.getText();
             pwdText = passwordField.getText();
+
+
+                try{
+                    connect();
+                    dispose();
+                    new Requete(connection);
+                }
+                catch(SQLException ex){
+                    JOptionPane.showMessageDialog(this, "Mot de passe ou identifiant invlide");
+                }
+                catch(ClassNotFoundException ex){ex.printStackTrace();
+                }
+
+            if (e.getSource() == exitButton) {
+                String userText;
+                String pwdText;
+                userText = userTextField.getText();
+                pwdText = passwordField.getText();
 
 
                 try{
